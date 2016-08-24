@@ -9,20 +9,18 @@ var TEMPLATE = ['<div class="js-dropdown-menu">',
                 '</div>'].join('\n');
 
 describe('DropdownMenuController', function () {
-  var container;
+  var ctrl;
   var toggleEl;
   var menuEl;
 
   beforeEach(function () {
-    container = util.setupComponent(document, TEMPLATE, {
-      '.js-dropdown-menu': DropdownMenuController,
-    });
-    toggleEl = container.querySelector('.js-dropdown-menu-toggle');
-    menuEl = container.querySelector('.js-dropdown-menu-content');
+    ctrl = util.setupComponent(document, TEMPLATE, DropdownMenuController);
+    toggleEl = ctrl.refs.dropdownMenuToggle;
+    menuEl = ctrl.refs.dropdownMenuContent;
   });
 
   afterEach(function () {
-    container.remove();
+    ctrl.element.remove();
   });
 
   function isOpen() {
