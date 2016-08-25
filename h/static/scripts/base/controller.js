@@ -12,6 +12,11 @@ var dom = require('../util/dom');
  * - The controllers attached to an element are accessible via the
  *   `element.controllers` array
  *
+ * The controller maintains internal state in `this.state`, which can only be
+ * updated by calling (`this.setState(changes)`). Whenever the internal state of
+ * the controller changes, `this.update()` is called to sync the DOM with this
+ * state.
+ *
  * @param {Element} element - The DOM Element to upgrade
  */
 function Controller(element) {
@@ -53,6 +58,9 @@ Controller.prototype.reload = function (html) {
 
 /**
  * Calls update() with the current state.
+ *
+ * This is useful for controllers where the state is available in the DOM
+ * itself, so doesn't need to be maintained internally.
  */
 Controller.prototype.forceUpdate = function () {
   this.update(this.state, this.state);
