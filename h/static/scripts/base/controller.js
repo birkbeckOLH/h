@@ -51,4 +51,11 @@ Controller.prototype.reload = function (html) {
   this.state = {};
 };
 
+/**
+ * Calls update() with the current state.
+ */
+Controller.prototype.forceUpdate = function () {
+  this.update(this.state, this.state);
+};
+
 module.exports = Controller;
